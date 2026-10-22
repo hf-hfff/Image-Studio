@@ -24,8 +24,8 @@ Image Studio 面向 OpenAI 兼容图像上游，重点解决长时间图像推�
 ## 快速上手
 
 1. 安装应用
-   - 稳定版本:到 [RoseKhlifa/Image-Studio Releases](https://github.com/RoseKhlifa/Image-Studio/releases) 下载。
-   - 抢先体验当前分支的最新改动:到 [DR-lin-eng/Image-Studio Actions · release.yml](https://github.com/DR-lin-eng/Image-Studio/actions/workflows/release.yml) 下载最近一次成功构建的 artifact。
+   - 稳定版本:到 [hf-hfff/Image-Studio Releases](https://github.com/hf-hfff/Image-Studio/releases) 下载。
+   - 抢先体验当前分支的最新改动:到 [hf-hfff/Image-Studio Actions · release.yml](https://github.com/hf-hfff/Image-Studio/actions/workflows/release.yml) 下载最近一次成功构建的 artifact。
      Windows 上这类 CI `exe` 如果没有签名，可能会被 Win11 Smart App Control / SmartScreen 拦截，因此只建议用于内部测试。
    - 各平台安装包区别、命名规则和选择建议见 [docs/packages.md](./docs/packages.md)。
 2. 首次启动后打开「上游配置」，填写 API 形态、BASE_URL、API Key、请求模型 ID。
@@ -93,4 +93,4 @@ Image Studio 面向 OpenAI 兼容图像上游，重点解决长时间图像推�
   <a href="https://muxueai.pro"><img src="./docs/picture/%E8%B5%9E%E5%8A%A9-muxueai.pro.png" alt="赞助商 · muxueai.pro" width="720"></a>
 </p>
 
-[![Star History Chart](https://star-history.dera.page/svg?repos=RoseKhlifa/Image-Studio&type=Date)](https://star-history.dera.page/#RoseKhlifa/Image-Studio&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=hf-hfff/Image-Studio&type=Date)](https://star-history.dera.page/#hf-hfff/Image-Studio&Date)

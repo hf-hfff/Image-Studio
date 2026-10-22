@@ -6,11 +6,11 @@
 
 ### 稳定版本
 
-稳定版本到 [RoseKhlifa/Image-Studio Releases](https://github.com/RoseKhlifa/Image-Studio/releases) 下载，适合日常使用与对外分发。
+稳定版本到 [hf-hfff/Image-Studio Releases](https://github.com/hf-hfff/Image-Studio/releases) 下载，适合日常使用与对外分发。
 
 ### 抢先测试版本
 
-如果你想体验当前分支最近完成、但还没有进入上游 tag 的改动，可以到 [DR-lin-eng/Image-Studio Actions · release.yml](https://github.com/DR-lin-eng/Image-Studio/actions/workflows/release.yml) 下载最近一次成功构建的 artifact。
+如果你想体验当前分支最近完成、但还没有进入上游 tag 的改动，可以到 [hf-hfff/Image-Studio Actions · release.yml](https://github.com/hf-hfff/Image-Studio/actions/workflows/release.yml) 下载最近一次成功构建的 artifact。
 
 这类构建通常会更快包含当前开发分支上的改动，但稳定性和回归覆盖不如正式 release，建议只在测试环境使用。
 

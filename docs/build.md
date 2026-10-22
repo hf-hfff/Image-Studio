@@ -12,7 +12,7 @@
 ## 克隆源码
 
 ```bash
-git clone https://github.com/RoseKhlifa/Image-Studio.git
+git clone https://github.com/hf-hfff/Image-Studio.git
 cd Image-Studio
 ```
 
