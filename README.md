@@ -21,6 +21,22 @@ Image Studio 面向 OpenAI 兼容图像上游，重点解决长时间图像推�
 
 **配套项目 [Image-Prompts](https://prompts.sorry.ink/) 提供提示词浏览与一键导入能力，支持把网页上的提示词直接送入 Image Studio 桌面端。相关说明见 [docs/prompt-import.md](./docs/prompt-import.md)。**
 
+## 项目来源与二次开发说明
+
+本项目是 **[RoseKhlifa/Image-Studio](https://github.com/RoseKhlifa/Image-Studio)** 的**社区二次开发版本**（upstream，AGPL-3.0，© 2026 RoseKhlifa），**不是原作者发布的官方版本**。
+
+| 项目 | 说明 |
+|---|---|
+| 上游仓库 | https://github.com/RoseKhlifa/Image-Studio |
+| 基线提交 | `c49519c`（2026-07-29），之后陆续同步上游改动，并在其上叠加本仓库的修改 |
+| 修改起始 | 2026-10-22 |
+| 修改内容 | 界面对齐、构建与发布脚本、文档改写、平台适配等；逐条差异以 [git 历史](https://github.com/hf-hfff/Image-Studio/commits/main) 与 [NOTICE](./NOTICE) 为准 |
+| 许可证 | 沿用上游 AGPL-3.0，[LICENSE](./LICENSE) 为官方全文未作改动；本仓库的全部修改同样以 AGPL-3.0 授权 |
+
+依照 AGPL-3.0 第 5 条「修改版须显著标注修改事实与日期」的要求，此处明确声明：**本仓库包含对原作品的修改，修改自 2026-10-22 起持续进行。**
+
+上游作者与本仓库无从属或背书关系，不对本仓库的改动、构建产物与支持负责；使用中遇到的问题请提交到 [本仓库 Issues](https://github.com/hf-hfff/Image-Studio/issues)，不要打扰上游作者。
+
 ## 快速上手
 
 1. 安装应用
@@ -75,7 +91,7 @@ Image Studio 面向 OpenAI 兼容图像上游，重点解决长时间图像推�
 
 ## License
 
-[GNU AGPL v3.0](./LICENSE) © 2026
+[GNU AGPL v3.0](./LICENSE) © 2026 RoseKhlifa（原项目）· © 2026 hf-hfff（本仓库的修改部分）
 
 这意味着基于本项目进行修改后再分发，或将修改版作为网络服务提供给他人使用时，都需要按同一许可证公开对应源码。
 

@@ -1,0 +1,49 @@
+Image Studio — 二次开发版本 / Derivative Work
+================================================
+
+本仓库（https://github.com/hf-hfff/Image-Studio）是下列项目的二次开发版本，
+并非原作者官方发布。
+This repository is a derivative work of the project below and is NOT an
+official release by the original author.
+
+上游项目 / Upstream project
+------------------------------------------------
+  名称 / Name        : Image Studio
+  仓库 / Repository  : https://github.com/RoseKhlifa/Image-Studio
+  版权 / Copyright   : © 2026 RoseKhlifa
+  许可证 / License   : GNU Affero General Public License v3.0 (AGPL-3.0)
+
+衍生关系 / Derivative relationship
+------------------------------------------------
+  基线提交 / Baseline commit : c49519cfb1a230b6fbcacd451f2b6717f2200af0
+                               (2026-07-29, "Refactor image workflows and
+                               improve application state handling")
+  修改起始 / Modified since  : 2026-10-22
+  修改说明 / Modifications   : 自上述基线起，本仓库陆续同步上游后续改动，并在
+                               其上叠加本地修改（界面、构建、文档、平台适配等）。
+                               具体差异以本仓库 git 历史为准：
+                               https://github.com/hf-hfff/Image-Studio/commits/main
+
+按 AGPL-3.0 第 5(a) 条，特此显著声明：本仓库包含对原作品的修改，修改自
+2026-10-22 起持续进行。
+Per AGPL-3.0 section 5(a), notice is hereby given that this repository contains
+modifications to the original work, made from 2026-10-22 onward.
+
+许可证 / Licensing
+------------------------------------------------
+  本仓库整体（含全部修改）继续以 AGPL-3.0 授权，见 LICENSE 文件。
+  LICENSE 为 AGPL-3.0 官方全文，未作任何改动。
+  This repository as a whole, including all modifications, remains licensed
+  under AGPL-3.0. See the LICENSE file, which is the unmodified official text.
+
+  分发本仓库的二进制产物时，须按 AGPL-3.0 第 6 条同时提供完整对应源码；
+  若将修改版作为网络服务提供给他人使用，须按第 13 条向使用者提供源码。
+
+免责 / Disclaimer
+------------------------------------------------
+  本仓库由社区维护，与上游原作者无从属、代理或背书关系。上游作者不对本仓库
+  的修改、构建产物、发布与支持负责；相关问题请提交到本仓库 Issues：
+  https://github.com/hf-hfff/Image-Studio/issues
+  This fork is community-maintained and is not affiliated with, authorized by,
+  or endorsed by the original author. The original author is not responsible
+  for any changes, builds, releases, or support in this repository.
