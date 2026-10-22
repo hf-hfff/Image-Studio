@@ -7,7 +7,7 @@ import { openExternalURLForPlatform } from "../../platform/android/bridge";
 import { AppHeaderBrand } from "./AppHeaderBrand";
 import { HeaderIconBtn, HeaderToggleBtn } from "./headerPrimitives";
 
-const REPO_URL = "https://github.com/RoseKhlifa/Image-Studio";
+const REPO_URL = "https://github.com/hf-hfff/Image-Studio";
 
 export function AppHeader({ onOpenSettings }: { onOpenSettings: () => void }) {
   const { fullscreen, theme, setTheme, pushToast, newWorkspace, openStarPrompt } = useStudioFields([

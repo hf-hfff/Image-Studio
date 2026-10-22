@@ -25,6 +25,8 @@ Image Studio 面向 OpenAI 兼容图像上游，重点解决长时间图像推�
 
 本项目是 **[RoseKhlifa/Image-Studio](https://github.com/RoseKhlifa/Image-Studio)** 的**社区二次开发版本**（upstream，AGPL-3.0，© 2026 RoseKhlifa），**不是原作者发布的官方版本**。
 
+本仓库为独立维护的二次开发版本，**并非 GitHub 上的 fork**（与上游之间没有 forked from 关系），上游代码以快照方式引入后继续开发；上游仍为 RoseKhlifa/Image-Studio。
+
 | 项目 | 说明 |
 |---|---|
 | 上游仓库 | https://github.com/RoseKhlifa/Image-Studio |

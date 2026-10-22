@@ -56,7 +56,7 @@ export function AboutImageStudioModal({
             开源的图片生成 / 编辑客户端。数据都保存在本地机器，不上传任何服务器，API Key 走系统安全存储。
           </p>
           <p className="mt-2 text-[10px] leading-relaxed text-zinc-500">
-            Copyright © 2026 RoseKhlifa · 本程序按 GNU AGPL v3.0 发布，不提供任何担保。
+            Copyright © 2026 RoseKhlifa（原项目）· 二次开发 © 2026 hf-hfff · 本程序按 GNU AGPL v3.0 发布，不提供任何担保。
           </p>
           <div className="mt-3 grid grid-cols-2 gap-2 text-[10px]">
             <SettingsFact label="数据" value="本地保存" />
@@ -73,7 +73,7 @@ export function AboutImageStudioModal({
             数据(API Key、历史记录、生成图)都保存在本地机器,不上传任何服务器。API Key 走系统安全存储,不再保存在 localStorage。
           </p>
           <p className="mt-2 text-[11px] leading-relaxed text-zinc-500 dark:text-zinc-400">
-            Copyright © 2026 RoseKhlifa · 本程序按 GNU AGPL v3.0 发布，不提供任何担保。
+            Copyright © 2026 RoseKhlifa（原项目）· 二次开发 © 2026 hf-hfff · 本程序按 GNU AGPL v3.0 发布，不提供任何担保。
           </p>
           <div className="mt-3 text-[10px] text-zinc-500 leading-relaxed space-y-0.5">
             <div><strong className="text-zinc-700 dark:text-zinc-300">技术栈:</strong></div>

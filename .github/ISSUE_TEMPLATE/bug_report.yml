@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        提交前请先阅读 [docs/troubleshooting.md](https://github.com/RoseKhlifa/Image-Studio/blob/main/docs/troubleshooting.md)。
+        提交前请先阅读 [docs/troubleshooting.md](https://github.com/hf-hfff/Image-Studio/blob/main/docs/troubleshooting.md)。
 
         如果问题来自 `BASE_URL`、`API Key`、模型权限、账户余额、IP 白名单、上游 524/504、relay 兼容性或服务商临时故障，请不要提交 Bug Issue。
 

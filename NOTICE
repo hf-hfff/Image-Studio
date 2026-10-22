@@ -15,6 +15,12 @@ official release by the original author.
 
 衍生关系 / Derivative relationship
 ------------------------------------------------
+  本仓库为独立维护的二次开发版本，并非 GitHub 上的 fork（本仓库与上游之间没有
+  "forked from" 关系），上游代码是以快照方式引入后继续开发的。
+  This is an independently maintained derivative work. It is NOT a GitHub fork
+  (there is no "forked from" link to upstream); upstream code was brought in as
+  a snapshot and development continued from there.
+
   基线提交 / Baseline commit : c49519cfb1a230b6fbcacd451f2b6717f2200af0
                                (2026-07-29, "Refactor image workflows and
                                improve application state handling")

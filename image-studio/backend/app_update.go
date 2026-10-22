@@ -19,8 +19,8 @@ import (
 
 const (
 	defaultAppVersion       = "0.1.5"
-	releasesPageURL         = "https://github.com/RoseKhlifa/Image-Studio/releases"
-	latestReleaseAPIURL     = "https://api.github.com/repos/RoseKhlifa/Image-Studio/releases/latest"
+	releasesPageURL         = "https://github.com/hf-hfff/Image-Studio/releases"
+	latestReleaseAPIURL     = "https://api.github.com/repos/hf-hfff/Image-Studio/releases/latest"
 	latestReleaseAPIURLEnv  = "IMAGE_STUDIO_LATEST_RELEASE_API_URL"
 	latestReleaseAPIVersion = "2022-11-28"
 	updateRequestTimeout    = 8 * time.Second
