@@ -97,18 +97,4 @@ Image Studio 面向 OpenAI 兼容图像上游，重点解决长时间图像推�
 
 这意味着基于本项目进行修改后再分发，或将修改版作为网络服务提供给他人使用时，都需要按同一许可证公开对应源码。
 
-## 致谢
-
-- <a href="https://linux.do/"><img src="./docs/picture/linuxdo.png" alt="linux.do" height="20" align="absmiddle" /></a> [**linux.do**](https://linux.do/) —— 感谢 L 站及其社区为项目开发与交流提供的支持与启发。
-
-### 赞助商
-
-<p align="center">
-  <a href="https://www.fhl.mom"><img src="./docs/picture/%E8%B5%9E%E5%8A%A9-www.FHL.mom.png" alt="赞助商 · www.fhl.mom" width="720"></a>
-  <br /><br />
-  <a href="https://gptcodex.top"><img src="./docs/picture/%E8%B5%9E%E5%8A%A9-GPTCODEX.top.png" alt="赞助商 · gptcodex.top" width="720"></a>
-  <br /><br />
-  <a href="https://muxueai.pro"><img src="./docs/picture/%E8%B5%9E%E5%8A%A9-muxueai.pro.png" alt="赞助商 · muxueai.pro" width="720"></a>
-</p>
-
 [![Star History Chart](https://star-history.dera.page/svg?repos=hf-hfff/Image-Studio&type=Date)](https://star-history.dera.page/#hf-hfff/Image-Studio&Date)
