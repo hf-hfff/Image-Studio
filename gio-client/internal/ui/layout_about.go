@@ -44,11 +44,13 @@ func (a *App) layoutAboutModal(gtx layout.Context) layout.Dimensions {
 	updateSummary := "未发现更高版本"
 	if checking {
 		updateSummary = "检查更新中..."
+	} else if info != nil && info.NoRelease {
+		updateSummary = "暂无发布版本"
 	} else if info != nil && info.HasUpdate {
 		updateSummary = "可升级到 v" + info.LatestVersion
 	}
 	updateButtonLabel := "查看更新"
-	if info == nil || (!info.HasUpdate && !checking) {
+	if info == nil || info.NoRelease || (!info.HasUpdate && !checking) {
 		updateButtonLabel = "发布页"
 	}
 

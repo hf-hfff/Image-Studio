@@ -26,3 +26,30 @@ test("newer patch release still counts as update", () => {
   assert.ok(normalized);
   assert.equal(normalized.hasUpdate, true);
 });
+
+test("no published release normalizes into a friendly noRelease state", () => {
+  const normalized = appUpdate.normalizeAppUpdateInfo({
+    currentVersion: "0.1.5",
+    latestVersion: "",
+    releaseTag: "",
+    releaseURL: "https://github.com/hf-hfff/Image-Studio/releases",
+    hasUpdate: false,
+    noRelease: true,
+  });
+  assert.ok(normalized);
+  assert.equal(normalized.noRelease, true);
+  assert.equal(normalized.hasUpdate, false);
+  assert.equal(normalized.latestVersion, "");
+  assert.equal(normalized.releaseURL, "https://github.com/hf-hfff/Image-Studio/releases");
+});
+
+test("payload without versions and without noRelease is dropped", () => {
+  const normalized = appUpdate.normalizeAppUpdateInfo({
+    currentVersion: "0.1.5",
+    latestVersion: "",
+    releaseTag: "",
+    releaseURL: "",
+    hasUpdate: false,
+  });
+  assert.equal(normalized, null);
+});

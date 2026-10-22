@@ -64,6 +64,35 @@ func TestCheckForAppUpdateDoesNotFlagSameCoreReleaseForCIBuild(t *testing.T) {
 	}
 }
 
+func TestCheckForAppUpdateTreats404AsNoRelease(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprint(w, `{"message":"Not Found","documentation_url":"https://docs.github.com/rest"}`)
+	}))
+	defer srv.Close()
+
+	info, err := checkForAppUpdateWithClient(context.Background(), &http.Client{}, srv.URL)
+	if err != nil {
+		t.Fatalf("checkForAppUpdateWithClient() error = %v, want nil for 404", err)
+	}
+	if !info.NoRelease {
+		t.Fatal("NoRelease = false, want true")
+	}
+	if info.HasUpdate {
+		t.Fatal("HasUpdate = true, want false")
+	}
+	if info.CurrentVersion == "" {
+		t.Fatal("CurrentVersion is empty, want the running version")
+	}
+	if info.ReleaseURL != releasesPageURL {
+		t.Fatalf("ReleaseURL = %q, want %q", info.ReleaseURL, releasesPageURL)
+	}
+	if shouldShowAppUpdate(&info, "") {
+		t.Fatal("expected no update modal while the repository has no release")
+	}
+}
+
 func TestShouldShowAppUpdateHonoursIgnoredReleaseTag(t *testing.T) {
 	info := &appUpdateInfo{
 		ReleaseTag: "v1.1.13",

@@ -167,6 +167,8 @@ export type AppUpdateInfoLike = {
   publishedAt?: string;
   body?: string;
   hasUpdate: boolean;
+  /** 查询成功但仓库没有任何已发布版本时由后端置位,界面应显示「暂无发布版本」。 */
+  noRelease?: boolean;
 };
 
 export type AppUpdateProbeResultLike = {

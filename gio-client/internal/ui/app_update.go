@@ -3,6 +3,7 @@ package ui
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -27,7 +28,13 @@ const (
 	appUpdateRequestTimeout = 8 * time.Second
 )
 
-var appUpdateSemverPattern = regexp.MustCompile(`^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$`)
+var (
+	appUpdateSemverPattern = regexp.MustCompile(`^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$`)
+
+	// errAppNoReleasePublished 表示仓库还没有发布任何版本(GitHub 对没有
+	// release 的仓库、以及未登录访问的私有仓库,都会返回 404)。
+	errAppNoReleasePublished = errors.New("仓库暂无发布版本")
+)
 
 type appUpdateInfo struct {
 	CurrentVersion string
@@ -38,6 +45,8 @@ type appUpdateInfo struct {
 	PublishedAt    string
 	Body           string
 	HasUpdate      bool
+	// NoRelease 为 true 表示查询成功,但仓库当前没有任何已发布的版本。
+	NoRelease bool
 }
 
 type githubLatestRelease struct {
@@ -84,6 +93,10 @@ func (a *App) startAppUpdateCheck() {
 		a.appUpdateInfo = &info
 		a.appUpdateModalOpen = shouldShowAppUpdate(&info, a.ignoredReleaseTag)
 		a.mu.Unlock()
+		if info.NoRelease {
+			a.appendLog("检查更新: 仓库暂无发布版本,发布后会自动提示")
+			return
+		}
 		a.invalidateNow()
 	}()
 }
@@ -143,6 +156,13 @@ func checkForAppUpdateWithClient(ctx context.Context, httpClient *http.Client, a
 	currentVersion := currentDesktopAppVersion()
 	release, err := fetchLatestGitHubRelease(ctx, httpClient, apiURL)
 	if err != nil {
+		if errors.Is(err, errAppNoReleasePublished) {
+			return appUpdateInfo{
+				CurrentVersion: currentVersion,
+				ReleaseURL:     releasesPageURL,
+				NoRelease:      true,
+			}, nil
+		}
 		return appUpdateInfo{}, err
 	}
 	if release.Draft {
@@ -187,6 +207,11 @@ func fetchLatestGitHubRelease(ctx context.Context, httpClient *http.Client, apiU
 		return githubLatestRelease{}, err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode == http.StatusNotFound {
+		// 404 有两种可能:仓库还没有任何 release,或仓库对当前请求不可见。
+		// 两种都不该当成故障弹给用户,统一按「暂无发布版本」处理。
+		return githubLatestRelease{}, errAppNoReleasePublished
+	}
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(io.LimitReader(resp.Body, 4096))
 		return githubLatestRelease{}, fmt.Errorf("GitHub releases 请求失败: %s %s", resp.Status, strings.TrimSpace(string(body)))

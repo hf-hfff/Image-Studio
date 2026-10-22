@@ -373,6 +373,8 @@ export interface AppUpdateInfo {
   publishedAt?: string;
   body?: string;
   hasUpdate: boolean;
+  /** 仓库暂无任何已发布版本(后端把 GitHub 404 归一成这一正常状态)。 */
+  noRelease?: boolean;
 }
 
 export type AnnotationKind = "rect" | "arrow" | "text" | "freehand";

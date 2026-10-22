@@ -93,7 +93,7 @@ func (s *Service) captureAppUpdateProbe() {
 		AppUpdateModalOpen:  false,
 	}
 	updateInfo, err := s.CheckForAppUpdate()
-	if err == nil {
+	if err == nil && !updateInfo.NoRelease {
 		result.CurrentVersion = updateInfo.CurrentVersion
 		result.LatestVersion = updateInfo.LatestVersion
 		result.ReleaseTag = updateInfo.ReleaseTag

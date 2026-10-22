@@ -24,6 +24,21 @@ export function normalizeAppUpdateInfo(raw: unknown): AppUpdateInfo | null {
   const releaseTag = typeof source.releaseTag === "string" ? source.releaseTag.trim() : "";
   const releaseURL = typeof source.releaseURL === "string" ? source.releaseURL.trim() : "";
   const hasUpdateFlag = source.hasUpdate === true;
+  const noRelease = source.noRelease === true;
+  // 仓库还没有发布任何版本:这是正常状态,不是错误,保留一条可展示的信息。
+  if (noRelease) {
+    return {
+      currentVersion,
+      latestVersion: "",
+      releaseTag: "",
+      releaseURL,
+      hasUpdate: false,
+      releaseName: "",
+      publishedAt: "",
+      body: "",
+      noRelease: true,
+    };
+  }
   if (!currentVersion || !latestVersion || !releaseTag || !releaseURL) return null;
   return {
     currentVersion,

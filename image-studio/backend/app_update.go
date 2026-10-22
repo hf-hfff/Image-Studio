@@ -26,7 +26,13 @@ const (
 	updateRequestTimeout    = 8 * time.Second
 )
 
-var semverPattern = regexp.MustCompile(`^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$`)
+var (
+	semverPattern = regexp.MustCompile(`^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$`)
+
+	// errNoReleasePublished 表示这个仓库还没有发布任何版本(GitHub 对没有
+	// release 的仓库、以及未登录访问的私有仓库,都会返回 404)。
+	errNoReleasePublished = errors.New("仓库暂无发布版本")
+)
 
 type AppUpdateInfo struct {
 	CurrentVersion string `json:"currentVersion"`
@@ -37,6 +43,9 @@ type AppUpdateInfo struct {
 	PublishedAt    string `json:"publishedAt,omitempty"`
 	Body           string `json:"body,omitempty"`
 	HasUpdate      bool   `json:"hasUpdate"`
+	// NoRelease 为 true 表示查询成功,但仓库当前没有任何已发布的版本。
+	// 这是正常状态而非错误,界面应显示「暂无发布版本」而不是报错。
+	NoRelease bool `json:"noRelease,omitempty"`
 }
 
 type githubLatestRelease struct {
@@ -60,6 +69,9 @@ func (s *Service) CheckForAppUpdate() (AppUpdateInfo, error) {
 
 	release, err := fetchLatestGitHubRelease(ctx)
 	if err != nil {
+		if errors.Is(err, errNoReleasePublished) {
+			return noReleaseAppUpdateInfo(currentVersion), nil
+		}
 		return AppUpdateInfo{}, err
 	}
 	if release.Draft {
@@ -87,6 +99,17 @@ func (s *Service) CheckForAppUpdate() (AppUpdateInfo, error) {
 	}, nil
 }
 
+// noReleaseAppUpdateInfo 构造「仓库暂无发布版本」这一正常结果,让上层拿到
+// 可展示的信息而不是一条 404 错误。
+func noReleaseAppUpdateInfo(currentVersion string) AppUpdateInfo {
+	return AppUpdateInfo{
+		CurrentVersion: currentVersion,
+		ReleaseURL:     releasesPageURL,
+		HasUpdate:      false,
+		NoRelease:      true,
+	}
+}
+
 func fetchLatestGitHubRelease(ctx context.Context) (githubLatestRelease, error) {
 	apiURL := strings.TrimSpace(os.Getenv(latestReleaseAPIURLEnv))
 	if apiURL == "" {
@@ -109,6 +132,11 @@ func fetchLatestGitHubRelease(ctx context.Context) (githubLatestRelease, error) 
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode == http.StatusNotFound {
+		// 404 有两种可能:仓库还没有任何 release,或仓库对当前请求不可见。
+		// 两种都不该当成故障抛给用户,统一按「暂无发布版本」处理。
+		return githubLatestRelease{}, errNoReleasePublished
+	}
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(io.LimitReader(resp.Body, 4096))
 		return githubLatestRelease{}, fmt.Errorf("GitHub releases 请求失败: %s %s", resp.Status, strings.TrimSpace(string(body)))
